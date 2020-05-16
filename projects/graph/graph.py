@@ -26,65 +26,65 @@ class Graph:
     def get_neighbors(self, vertex_id):
         return self.vertices[vertex_id]
 
-    def bft(self, starting_vertex):
-        # add starting node to a queue
-        q = Queue()
-        q.enqueue(starting_vertex)
+    # def bft(self, starting_vertex):
+    #     # add starting node to a queue
+    #     q = Queue()
+    #     q.enqueue(starting_vertex)
 
-        # track visited nodes
-        visited = set()
+    #     # track visited nodes
+    #     visited = set()
 
-        # while queue isnt empty:
-        while q.size() > 0:
-            # if the vert hasnt been visited:
-            # dequeue the first vertex
-            v = q.dequeue()
-            # if it is not visited print vertex
-            if v not in visited:
-                print(v)
-                # and then mark as visited
-                visited.add(v)
-                # add neighbors not already visited to queue and repeat
+    #     # while queue isnt empty:
+    #     while q.size() > 0:
+    #         # if the vert hasnt been visited:
+    #         # dequeue the first vertex
+    #         v = q.dequeue()
+    #         # if it is not visited print vertex
+    #         if v not in visited:
+    #             print(v)
+    #             # and then mark as visited
+    #             visited.add(v)
+    #             # add neighbors not already visited to queue and repeat
 
-                for next_vertex in self.get_neighbors(v):
-                    q.enqueue(next_vertex)
+    #             for next_vertex in self.get_neighbors(v):
+    #                 q.enqueue(next_vertex)
 
-    def dft(self, starting_vertex):
-        # add starting node to stack
-        s = Stack()
+    # def dft(self, starting_vertex):
+    #     # add starting node to stack
+    #     s = Stack()
 
-        # track visited
-        visited = set()
+    #     # track visited
+    #     visited = set()
 
-        # while stack isn't empty:
-        while s.size() > 0:
-            # pop the first vert
-            v = s.pop()
-            # if that vert isnt visited:
-            if v not in visited:
-                print(v)
-                # mark as visited
-                visited.add(v)
-        # add all unvisited neighbors to the stack
-            for next_vertex in self.get_neighbors(v):
-                s.push(next_vertex)
+    #     # while stack isn't empty:
+    #     while s.size() > 0:
+    #         # pop the first vert
+    #         v = s.pop()
+    #         # if that vert isnt visited:
+    #         if v not in visited:
+    #             print(v)
+    #             # mark as visited
+    #             visited.add(v)
+    #     # add all unvisited neighbors to the stack
+    #         for next_vertex in self.get_neighbors(v):
+    #             s.push(next_vertex)
 
-    def dft_recursive(self, starting_vertex, visited=None, path=None):
-        # print starting vert (None)
-        print(starting_vertex)
+    # def dft_recursive(self, starting_vertex, visited=None, path=None):
+    #     # print starting vert (None)
+    #     print(starting_vertex)
 
-        # if visited is None, create new set
-        if visited is None:
-            visited = set()
+    #     # if visited is None, create new set
+    #     if visited is None:
+    #         visited = set()
 
-        # add visited to starting_vertex
-        visited.add(starting_vertex)
+    #     # add visited to starting_vertex
+    #     visited.add(starting_vertex)
 
-        # for each child starting_vertex:
-        for child_vertex in self.vertices[starting_vertex]:
-            # if child is not in visited, perform dft_recursive on child vert
-            if child_vertex not in visited:
-                self.dft_recursive(child_vertex, visited)
+    #     # for each child starting_vertex:
+    #     for child_vertex in self.vertices[starting_vertex]:
+    #         # if child is not in visited, perform dft_recursive on child vert
+    #         if child_vertex not in visited:
+    #             self.dft_recursive(child_vertex, visited)
 
     def bfs(self, starting_vertex, destination_vertex):
         # add starting node to a queue
@@ -102,36 +102,36 @@ class Graph:
             last_v = v[-1]
             # if it is not visited print vertex
             if last_v not in visited:
-                return v
-            else:
-                print(last_v)
-                # and then mark as visited
-                # q.enqueue(v)
-                visited.add(last_v)
-                # add neighbors not already visited to queue and repeat
+                if v == destination_vertex:
+                    return v
+                else:
+                    # mark as visited
+                    visited.add(last_v)
+                    # add neighbors not already visited to queue and repeat
+                    neighbors = self.get_neighbors(last_v)
 
-                for next_vertex in self.get_neighbors(last_v):
-                    v_copy = v[:]
-                    v_copy.append(next_vertex)
-                    q.enqueue(v_copy)
+                    for neighbor in neighbors:
+                        v_copy = v[:]
+                        v_copy.append(neighbors)
+                        q.enqueue(v_copy)
 
-    def dfs(self, starting_vertex, destination_vertex):
-        """
-        Return a list containing a path from
-        starting_vertex to destination_vertex in
-        depth-first order.
-        """
-        pass  # TODO
+    # def dfs(self, starting_vertex, destination_vertex):
+    #     """
+    #     Return a list containing a path from
+    #     starting_vertex to destination_vertex in
+    #     depth-first order.
+    #     """
+    #     pass  # TODO
 
-    def dfs_recursive(self, starting_vertex, destination_vertex):
-        """
-        Return a list containing a path from
-        starting_vertex to destination_vertex in
-        depth-first order.
+    # def dfs_recursive(self, starting_vertex, destination_vertex):
+    #     """
+    #     Return a list containing a path from
+    #     starting_vertex to destination_vertex in
+    #     depth-first order.
 
-        This should be done using recursion.
-        """
-        pass  # TODO
+    #     This should be done using recursion.
+    #     """
+    #     pass  # TODO
 
 
 if __name__ == '__main__':
