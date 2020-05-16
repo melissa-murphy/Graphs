@@ -102,7 +102,7 @@ class Graph:
             last_v = v[-1]
             # if it is not visited print vertex
             if last_v not in visited:
-                if v == destination_vertex:
+                if last_v == destination_vertex:
                     return v
                 else:
                     # mark as visited
